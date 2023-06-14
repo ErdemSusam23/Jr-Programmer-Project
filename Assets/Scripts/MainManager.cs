@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.IO;
+using System.IO;
 
 public class MainManager : MonoBehaviour
 {
@@ -25,5 +26,15 @@ public class MainManager : MonoBehaviour
     {
         public Color TeamColor;
     }
+
+    public void SaveColor() 
+    {
+        SaveData saveData = new SaveData();
+        saveData.TeamColor = TeamColor;
+        string json = JsonUtility.ToJson(saveData);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
 }
 
